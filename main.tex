@@ -90,6 +90,23 @@ POUs are where at the programs, function blocks and functions are placed. You ca
 To understand this, i have to explain what a task is. A task is controlling the timing of how often the program should be run. You can also configure the priority of how the program should be run. If the program block is of utmost importance, and must be completed within a certain time limit, you will give it a suiting priority. 
 \\
 \\
-PLCtask contains all of the task's that are used for different programs.  
+PLCtask is a task that I made, and are used for this PLC. Every program that are going to be run in the PLC is timed by this task, and has to be added to it. 
+
+
+\newpage
+
+\subsection{KukaPLC instance}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.7]{pictures/TC3_KukaPLC Instance.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}
+
+This is where you tie you're inputs and outputs to be transferred to and from the robot controller. When you create inputs and outputs in the PLC-program, they will end up here, and you have to link them to the module that transfer the data. Do not fret, I will describe this in a better manner later in the document. 
+
+\newpage
+
+
 
 \end{document}
