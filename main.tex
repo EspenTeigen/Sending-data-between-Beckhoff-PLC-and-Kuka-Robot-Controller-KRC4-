@@ -3,7 +3,8 @@
 \usepackage{graphicx}
 \usepackage{titlepic}
 \usepackage{hyperref}
-
+\usepackage{xcolor}
+\usepackage{amsmath}
 
 
 \titlepic{\includegraphics[width=\textwidth]{pictures/logo.jpg}}
@@ -22,11 +23,12 @@
 
 \newpage
 \section{Setting up the PLC to send and receive data with controller}
+\subsection{Opening a project and getting to know the main PLC components}
 First you have to open Twincat XAE. you will get this window
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=\textwidth]{pictures/TC3_startscreen.png}
+    \includegraphics[width=\textwidth]{pictures/TC3_overview/TC3_startscreen.png}
     \caption{Twincat startscreen}
     \label{fig:my_label}
 \end{figure}
@@ -38,7 +40,7 @@ You will get this view
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=\textwidth]{pictures/TC3_project_view.png}
+    \includegraphics[width=\textwidth]{pictures/TC3_overview/TC3_project_view.png}
     \caption{Project view}
     \label{fig:my_label2}
 \end{figure}
@@ -49,17 +51,17 @@ We can now take a look at the different parts that are relevant for data transmi
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=\textwidth]{pictures/TC3_PLC_expanded.png}
+    \includegraphics[width=\textwidth]{pictures/TC3_overview/TC3_PLC_expanded.png}
     \caption{Caption}
     \label{fig:my_label}
 \end{figure}
 
 \newpage
 
-\subsection{KukaPLC Project}
+\subsubsection{KukaPLC Project}
 \begin{figure}[!h]
     \centering
-    \includegraphics[scale=0.7]{pictures/TC3_KukaPLC.png}
+    \includegraphics[scale=0.7]{pictures/TC3_overview/TC3_KukaPLC.png}
     \caption{Caption}
     \label{fig:my_label}
 \end{figure}
@@ -67,10 +69,10 @@ This is the entire PLC project, and are pre-configured to transfer data from the
 
 \newpage
 
-\subsection{POUs}
+\subsubsection{POUs}
 \begin{figure}[!h]
     \centering
-    \includegraphics[scale=0.7]{pictures/TC3_POUs.png}
+    \includegraphics[scale=0.7]{pictures/TC3_overview/TC3_POUs.png}
     \caption{}
     \label{fig:my_label}
 \end{figure}
@@ -79,10 +81,10 @@ POUs are where at the programs, function blocks and functions are placed. You ca
 
 \newpage
 
-\subsection{PLCTask}
+\subsubsection{PLCTask}
 \begin{figure}[!h]
     \centering
-    \includegraphics[scale=0.7]{pictures/TC3_PLCTask.png}
+    \includegraphics[scale=0.7]{pictures/TC3_overview/TC3_PLCTask.png}
     \caption{}
     \label{fig:my_label}
 \end{figure}
@@ -95,10 +97,10 @@ PLCtask is a task that I made, and are used for this PLC. Every program that are
 
 \newpage
 
-\subsection{KukaPLC instance}
+\subsubsection{KukaPLC instance}
 \begin{figure}[!h]
     \centering
-    \includegraphics[scale=0.7]{pictures/TC3_KukaPLC Instance.png}
+    \includegraphics[scale=0.7]{"pictures/TC3_overview/TC3_KukaPLC Instance".png}
     \caption{}
     \label{fig:my_label}
 \end{figure}
@@ -107,6 +109,48 @@ This is where you tie you're inputs and outputs to be transferred to and from th
 
 \newpage
 
+\subsection{Creating a new program}
 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Creating program/create_POU(1)".png}
+    \caption{Start by right-clicking on the POUs-folder and select add-POU}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Creating program/POU name(2)".png}
+    \caption{Give the program a name, and make sure you create a program, and that it is structured text}
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.6]{"pictures/Creating program/create IO(3)".png}
+    \caption{Now we are ready to write a program}
+    \label{fig:my_label}
+\end{figure}
+
+\noindent
+\textcolor{blue}{PROGRAM}  demonstration is the name of the program
+\\\\
+\textcolor{blue}{VAR} and \textcolor{blue}{END\_VAR} denotes where you declare variables
+\\\\
+testVarOutput \textcolor{blue}{AT} \textcolor{purple}{\%Q*} : \textcolor{blue}{DWORD :=} 0;
+\\
+testVarOutput is the variable name, \textcolor{blue}{AT} tells the compiler that this should be attached to something. \textcolor{purple}{\%Q} tells the compiler that it should be an output, and the asterix * is telling the compiler that it can choose where in memory the data should be saved.    
+\\\\
+The reason we are using DWORD is because the ethercat bridge is configured to use it. The use of anything else will give a compiler error. 
+\\\\
+For the variable testVarInput it is the same, except we are using \textcolor{purple}{I} to tell the compiler that it is an input.
+\\\\
+Lastly I have just written a short code that will iterate trough all the values until the variable overflows and start at zero again. After we have linked the output to the bridge, the value will be transferred to the robot controller every iteration.
+
+\newpage
+ 
 
 \end{document}
