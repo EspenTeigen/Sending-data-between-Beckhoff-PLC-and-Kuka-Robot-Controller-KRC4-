@@ -23,6 +23,7 @@
 
 \newpage
 \section{Setting up the PLC to send and receive data with controller}
+
 \subsection{Opening a project and getting to know the main PLC components}
 First you have to open Twincat XAE. you will get this window
 
@@ -264,8 +265,154 @@ You have now downloaded the program to the PLC, the next step is to configure Wo
 \section{Configuration of the robot controller to send and receive values to and from the PLC}
 So. Lets open Work Visual, and getting started with the configuration to send and receive data. 
 
-\subsection{Getting Work Visual up and running}
+\subsection{Getting Work Visual up and running and brief overview}
+This is the first window Work Visual greet's you with. 
 
-\subsection{Linking IO's}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.3]{"pictures/Config work visual/WV(1)".png}
+    \caption{Start by clicking browse}
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Config work visual/WV(2)".png}
+    \caption{You are now looking at the files that are on the controller}
+    \label{fig:my_label}
+\end{figure}
+
+Expand the tree and you will see this
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Config work visual/WV(3)".png}
+    \caption{Notice that the file marked in red has a green arrow. This denotes that it is the active project}
+    \label{fig:my_label}
+\end{figure}
+
+Click open
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Config work visual/WV(4)".png}
+    \caption{Double-click the project ot make it active}
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+
+On the left you will see the project tree for the robot configuration. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.3]{"pictures/Config work visual/WV(5)".png}
+    \caption{Expand the Kuka extension bus(SYS-X44)}
+    \label{fig:my_label}
+\end{figure}
+
+
+
+\textcolor{red}{Do not do any configuration with control or system bus if you don't know what you are doing:} This will do major damage to the configuration file, and is thoroughly hard to unfuck. 
+
+\newpage
+
+Lets take a closer look at the project tree
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=1]{"pictures/Config work visual/WV(6)".png}
+    \caption{\textcolor{red}{1} is the bus our ethercat bridge is connected to, \textcolor{red}{2} is the bus we can connect our IO's and modules to}
+    \label{fig:my_label}
+\end{figure}
+
+I do not think there should be any need in the near future to do any changes to the settings of the ethercat-bridge. I have configured it to handle 128 bytes of data on each transmission, and 
+I think that should be enough for future use. 
+\\\\
+Now, let's have a look at how we would go about to configure the sending and receiving of data to and from the PLC. 
+
+\newpage
+
+\subsection{Linking the inputs from the PLC}
+We are now going to connect the data being sent from the PLC with the controllers internal IO-handling system. 
+\\\\
+In the center pane, you will find this
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.7]{"pictures/Config work visual/WV(7)".png}
+    \caption{Make sure you are on the IO-maping tab }
+    \label{fig:my_label}
+\end{figure}
+In the left pane, you are looking at the controllers internal IO's. We are going to connect this ones to the IO's comming from the ethercat brdige that are attached to the field-bus. So, in the right pane, select the fieldbusses pane. 
+
+\newpage
+Under sys-x44 you will find the EL6695-1001 bridge, select this in the right pane, and inputs ind the left pane.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.6]{"pictures/Config work visual/WV(8)".png}
+    \caption{We are first adding the values sent from the PLC}
+    \label{fig:my_label}
+\end{figure}
+
+in this picture, you will see that in the center horizontal pane, there is already some connections. This are the values that are from the force-torque sensor. As mentioned earlier, it is six values, and this matches up with the amount of connections we have. 
+\\\\
+The bottom right pane is the inputs from the ethercat bridge, and the bottom left, are the inputs on the controller we can connect to. The green arrow denotes the ones that are already connected. 
+\\\\
+One import thing to know and remember her, is that the controller treats every input as a boolean value, but fortunately, we can put several boolean inputs in to bytes, words and so on.  
+
+\newpage
+
+The data we are receiving are UDINT(Unsigned double integrer), and as everyone knows, this is 32 bits. That means that we have to select 32 of the inputs on the bottom left pane to have the space for det data we are receiveing from the PLC. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.6]{"pictures/Config work visual/WV(9)".png}
+    \caption{I have expanded the two bottom windows so we can see all the bits i have chosen}
+    \label{fig:my_label}
+\end{figure}
+
+Notice that in the right window, that i have chosen std.In(128 Bytes.input) DWORD 6. This correlate to where we put the data when we were doing the linking in the PLC.
+\newpage
+Now we can connect the input to the bits
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.6]{"pictures/Config work visual/WV(10)".png}
+    \caption{By clicking the connect button. Fortunately, I have marked this button with a big red arrow}
+    \label{fig:my_label}
+\end{figure}
+
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.6]{"pictures/Config work visual/WV(11)".png}
+    \caption{Click Yes}
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+
+We should now have made this connection
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.6]{"pictures/Config work visual/WV(12)".png}
+    \caption{Again we have a big red arrow that show us the change. Take a note of the number to the left, this will be useful later}
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+
+\subsection{Linking the outputs to the PLC }
+
+The process of linking the outputs to the PLC is essentially the same, but since I am a nice guy, and I already made the section name  I will walk you trough this too. 
+
+
+
 
 \end{document}
