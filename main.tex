@@ -130,7 +130,7 @@ This is where you tie you're inputs and outputs to be transferred to and from th
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[scale=0.6]{"pictures/Creating program/create IO(3)".png}
+    \includegraphics[scale=0.5]{"pictures/Creating program/create IO(3)".png}
     \caption{Now we are ready to write a program}
     \label{fig:my_label}
 \end{figure}
@@ -150,7 +150,85 @@ For the variable testVarInput it is the same, except we are using \textcolor{pur
 \\\\
 Lastly I have just written a short code that will iterate trough all the values until the variable overflows and start at zero again. After we have linked the output to the bridge, the value will be transferred to the robot controller every iteration.
 
-\newpage
+\subsection{Connecting the program to the PLC-task}
+
+ Now we have to connect our program to the PLC-task, otherwise it will not be executed. 
  
+ \begin{figure}[!h]
+     \centering
+     \includegraphics[scale=0.5]{"pictures/Creating program/add to task(4)".png}
+     \caption{Adding the program to the PLC-task}
+     \label{fig:my_label}
+ \end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.4]{"pictures/Creating program/select task(5)".png}
+    \caption{Select our program to be added to task and click OK}
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+
+Ok, just a few more steps. To get our input and output added to the instances, we have to build the PLC-program. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Creating program/build(6)".png}
+    \caption{Right click on KukaPLC project and select build}
+    \label{fig:my_label}
+\end{figure}
+
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Creating program/Instance(7)".png}
+    \caption{And now we can see the input and output we created in the KukaPLC instance}
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+
+\subsection{Linking of variables to bridge}
+
+And to get the data transferred, we have to link this instances to the ethercat-bridge inside the controller. Double-click the demonstration.testVarInput.
+
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Creating program/link input(8)".png}
+    \caption{We start by linking the input. Click the link to button}
+    \label{fig:my_label}
+\end{figure}
+
+A new window opens, this shows everything in the system you can link this variable to. If the variable type was BOOL, we could have linked this to a regular input or output. But we are linking this to the ethercat-bridge in the controller. This is the Box 9 (KRC4 secondary EL6695-1001). 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Creating program/link input(9)".png}
+    \caption{I am choosing the first DWORD, but you could use anyone }
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+
+We have successfully(I hope) linked the variable to the ethercat-bridge, and after upload to the PLC we can pull the values from the controller from this variable.
+\\\\
+Next step is to link the output variable to the ethercat-bridge so we can send values to the robot controller. 
+\\\\
+Start by double-clicking demonstration.TestVarOut located under PLCTask Outputs and click the Link to button(like you did when linking the input).
+\\\\
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Creating program/link output(11)".png}
+    \caption{Since I already have used the six first outputs to the data transfer from the force-torque sensor, we have to select the 6 output.}
+    \label{fig:my_label}
+\end{figure}
+
+Press OK, and we have also linked our output variable to be sent to the controller. The last step is to download the program to the PLC.
+
 
 \end{document}
