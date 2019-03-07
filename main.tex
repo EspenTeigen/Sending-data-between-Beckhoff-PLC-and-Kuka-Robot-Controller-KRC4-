@@ -411,8 +411,45 @@ We should now have made this connection
 \subsection{Linking the outputs to the PLC }
 
 The process of linking the outputs to the PLC is essentially the same, but since I am a nice guy, and I already made the section name  I will walk you trough this too. 
+\\\\
+Instead of choosing digital input in the upper left pane, we are now going to choose output
 
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.7]{"pictures/Config work visual/WV(13)".png}
+    \caption{Select the digtial output in the left pane, but stay on the EL6695-1001 fieldbus }
+    \label{fig:my_label}
+\end{figure}
 
+\newpage
 
+The process is going to be the same as last time. In the bottom pane, available outputs are gray, and linked outputs are green. The green one's, are the digital outputs in the cabinet the robot controls. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.7]{"pictures/Config work visual/WV(14)".png}
+    \caption{Notice that i made an error, i linked it to output 1 instead. You should use the same as the data you linked in the PLC-program.  }
+    \label{fig:my_label}
+\end{figure}
+
+Select 32 available outputs and link them to output 0, as we chose in the PLC-program.
+
+\newpage
+
+Push yes on the popup, and it should look something like this.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.7]{"pictures/Config work visual/WV(15)".png}
+    \caption{Success! Note: The error i made is still there}
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+
+\section{Give the output and input usable names}
+Since we are nice people, we would like to give the input and output names that we can remember. It can be hard to remember the data value we receive from the PLC is linked to input $n\:to\:n+32$. 
+////
+In the bottom right we have two buttons. 
 
 \end{document}
