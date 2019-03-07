@@ -36,7 +36,7 @@ First you have to open Twincat XAE. you will get this window
     \centering
     \includegraphics[width=\textwidth]{pictures/TC3_overview/TC3_startscreen.png}
     \caption{Twincat startscreen}
-    \label{fig:my_label}
+ 
 \end{figure}
 
 Select open project and in the folder TwinCAT project, you will find the microsoft visual studio solution \textbf{Kuka\_robot\_project\_twinsafe\_modbus}. If the project is not found, you can get a copy from \href{https://github.com/EspenTeigen/Kuka-KR-C4-commissioning}{\underline{github}}
@@ -48,7 +48,7 @@ You will get this view
     \centering
     \includegraphics[width=\textwidth]{pictures/TC3_overview/TC3_project_view.png}
     \caption{Project view}
-    \label{fig:my_label2}
+    
 \end{figure}
 
 The most interesting part off the project tree is the PLC, so expand that part. 
@@ -59,7 +59,7 @@ We can now take a look at the different parts that are relevant for data transmi
     \centering
     \includegraphics[width=\textwidth]{pictures/TC3_overview/TC3_PLC_expanded.png}
     \caption{Caption}
-    \label{fig:my_label}
+   
 \end{figure}
 
 \newpage
@@ -69,7 +69,7 @@ We can now take a look at the different parts that are relevant for data transmi
     \centering
     \includegraphics[scale=0.7]{pictures/TC3_overview/TC3_KukaPLC.png}
     \caption{Caption}
-    \label{fig:my_label}
+    
 \end{figure}
 This is the entire PLC project, and are pre-configured to transfer data from the force-torque sensor to the robot controller. It is in this project we will set up our data transfer.  
 
@@ -80,7 +80,7 @@ This is the entire PLC project, and are pre-configured to transfer data from the
     \centering
     \includegraphics[scale=0.7]{pictures/TC3_overview/TC3_POUs.png}
     \caption{}
-    \label{fig:my_label}
+   
 \end{figure}
 
 POUs are where at the programs, function blocks and functions are placed. You can chose between all the IEC 61131-3 standard programming languages. I will be using structured text. 
@@ -92,7 +92,7 @@ POUs are where at the programs, function blocks and functions are placed. You ca
     \centering
     \includegraphics[scale=0.7]{pictures/TC3_overview/TC3_PLCTask.png}
     \caption{}
-    \label{fig:my_label}
+  
 \end{figure}
 
 To understand this, i have to explain what a task is. A task is controlling the timing of how often the program should be run. You can also configure the priority of how the program should be run. If the program block is of utmost importance, and must be completed within a certain time limit, you will give it a suiting priority. 
@@ -108,7 +108,7 @@ PLCtask is a task that I made, and are used for this PLC. Every program that are
     \centering
     \includegraphics[scale=0.7]{"pictures/TC3_overview/TC3_KukaPLC Instance".png}
     \caption{}
-    \label{fig:my_label}
+    
 \end{figure}
 
 This is where you tie you're inputs and outputs to be transferred to and from the robot controller. When you create inputs and outputs in the PLC-program, they will end up here, and you have to link them to the module that transfer the data. Do not fret, I will describe this in a better manner later in the document. 
@@ -122,14 +122,14 @@ This is where you tie you're inputs and outputs to be transferred to and from th
     \centering
     \includegraphics[scale=0.5]{"pictures/Creating program/create_POU(1)".png}
     \caption{Start by right-clicking on the POUs-folder and select add-POU}
-    \label{fig:my_label}
+  
 \end{figure}
 
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.5]{"pictures/Creating program/POU name(2)".png}
     \caption{Give the program a name, and make sure you create a program, and that it is structured text}
-    \label{fig:my_label}
+   
 \end{figure}
 
 \newpage
@@ -138,7 +138,7 @@ This is where you tie you're inputs and outputs to be transferred to and from th
     \centering
     \includegraphics[scale=0.5]{"pictures/Creating program/create IO(3)".png}
     \caption{Now we are ready to write a program}
-    \label{fig:my_label}
+   
 \end{figure}
 
 \noindent
@@ -164,14 +164,14 @@ Lastly I have just written a short code that will iterate trough all the values 
      \centering
      \includegraphics[scale=0.5]{"pictures/Creating program/add to task(4)".png}
      \caption{Adding the program to the PLC-task}
-     \label{fig:my_label}
+     
  \end{figure}
 
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.4]{"pictures/Creating program/select task(5)".png}
     \caption{Select our program to be added to task and click OK}
-    \label{fig:my_label}
+    
 \end{figure}
 
 \newpage
@@ -182,7 +182,7 @@ Ok, just a few more steps. To get our input and output added to the instances, w
     \centering
     \includegraphics[scale=0.5]{"pictures/Creating program/build(6)".png}
     \caption{Right click on KukaPLC project and select build}
-    \label{fig:my_label}
+   
 \end{figure}
 
 
@@ -191,7 +191,7 @@ Ok, just a few more steps. To get our input and output added to the instances, w
     \centering
     \includegraphics[scale=0.5]{"pictures/Creating program/Instance(7)".png}
     \caption{And now we can see the input and output we created in the KukaPLC instance}
-    \label{fig:my_label}
+   
 \end{figure}
 
 \newpage
@@ -205,7 +205,7 @@ And to get the data transferred, we have to link this instances to the ethercat-
     \centering
     \includegraphics[scale=0.5]{"pictures/Creating program/link input(8)".png}
     \caption{We start by linking the input. Click the link to button}
-    \label{fig:my_label}
+   
 \end{figure}
 
 A new window opens, this shows everything in the system you can link this variable to. If the variable type was BOOL, we could have linked this to a regular input or output. But we are linking this to the ethercat-bridge in the controller. This is the Box 9 (KRC4 secondary EL6695-1001). 
@@ -214,7 +214,7 @@ A new window opens, this shows everything in the system you can link this variab
     \centering
     \includegraphics[scale=0.5]{"pictures/Creating program/link input(9)".png}
     \caption{I am choosing the first DWORD, but you could use anyone }
-    \label{fig:my_label}
+   
 \end{figure}
 
 \newpage
@@ -231,7 +231,7 @@ Start by double-clicking demonstration.TestVarOut located under PLCTask Outputs 
     \centering
     \includegraphics[scale=0.5]{"pictures/Creating program/link output(11)".png}
     \caption{Since I already have used the six first outputs to the data transfer from the force-torque sensor, we have to select the 6 output.}
-    \label{fig:my_label}
+   
 \end{figure}
 
 Press OK, and we have also linked our output variable to be sent to the controller. The last step is to download the program to the PLC.
@@ -246,21 +246,21 @@ Press OK, and we have also linked our output variable to be sent to the controll
     \centering
     \includegraphics[scale=0.8]{"pictures/Creating program/upload(1)".png}
     \caption{Up in the left area of TwinCAT, you can see this button. Push it, just do it, i dare you}
-    \label{fig:my_label}
+   
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics{"pictures/Creating program/upload(2)".png}
     \caption{Press OK}
-    \label{fig:my_label}
+  
 \end{figure}
 
 \begin{figure}[h!]
     \centering
     \includegraphics{"pictures/Creating program/upload(3)".png}
     \caption{And press OK again}
-    \label{fig:my_label}
+   
 \end{figure}
 
 You have now downloaded the program to the PLC, the next step is to configure Work Visual so the controller can receive the values we are sending to it.
@@ -277,7 +277,7 @@ This is the first window Work Visual greet's you with.
     \centering
     \includegraphics[scale=0.3]{"pictures/Config work visual/WV(1)".png}
     \caption{Start by clicking browse}
-    \label{fig:my_label}
+   
 \end{figure}
 
 \newpage
@@ -286,7 +286,7 @@ This is the first window Work Visual greet's you with.
     \centering
     \includegraphics[scale=0.5]{"pictures/Config work visual/WV(2)".png}
     \caption{You are now looking at the files that are on the controller}
-    \label{fig:my_label}
+   
 \end{figure}
 
 Expand the tree and you will see this
@@ -295,7 +295,7 @@ Expand the tree and you will see this
     \centering
     \includegraphics[scale=0.5]{"pictures/Config work visual/WV(3)".png}
     \caption{Notice that the file marked in red has a green arrow. This denotes that it is the active project}
-    \label{fig:my_label}
+    
 \end{figure}
 
 Click open
@@ -304,7 +304,7 @@ Click open
     \centering
     \includegraphics[scale=0.5]{"pictures/Config work visual/WV(4)".png}
     \caption{Double-click the project to make it active}
-    \label{fig:my_label}
+   
 \end{figure}
 
 \newpage
@@ -315,7 +315,7 @@ On the left you will see the project tree for the robot configuration.
     \centering
     \includegraphics[scale=0.3]{"pictures/Config work visual/WV(5)".png}
     \caption{Expand the Kuka extension bus(SYS-X44)}
-    \label{fig:my_label}
+    
 \end{figure}
 
 
@@ -330,7 +330,7 @@ Lets take a closer look at the project tree
     \centering
     \includegraphics[scale=1]{"pictures/Config work visual/WV(6)".png}
     \caption{\textcolor{red}{1} is the bus our ethercat bridge is connected to, \textcolor{red}{2} is the bus we can connect our IO's and modules to}
-    \label{fig:my_label}
+  
 \end{figure}
 
 I do not think there should be any need in the near future to do any changes to the settings of the ethercat-bridge. I have configured it to handle 128 bytes of data on each transmission, and 
@@ -349,7 +349,7 @@ In the center pane, you will find this
     \centering
     \includegraphics[scale=0.7]{"pictures/Config work visual/WV(7)".png}
     \caption{Make sure you are on the IO-maping tab }
-    \label{fig:my_label}
+   
 \end{figure}
 In the left pane, you are looking at the controllers internal IO's. We are going to connect this ones to the IO's comming from the ethercat brdige that are attached to the field-bus. So, in the right pane, select the fieldbusses pane. 
 
@@ -360,7 +360,7 @@ Under sys-x44 you will find the EL6695-1001 bridge, select this in the right pan
     \centering
     \includegraphics[scale=0.6]{"pictures/Config work visual/WV(8)".png}
     \caption{We are first adding the values sent from the PLC}
-    \label{fig:my_label}
+  
 \end{figure}
 
 in this picture, you will see that in the center horizontal pane, there is already some connections. This are the values that are from the force-torque sensor. As mentioned earlier, it is six values, and this matches up with the amount of connections we have. 
@@ -377,7 +377,7 @@ The data we are receiving are UDINT(Unsigned double integer), and as everyone kn
     \centering
     \includegraphics[scale=0.6]{"pictures/Config work visual/WV(9)".png}
     \caption{I have expanded the two bottom windows so we can see all the bits i have chosen}
-    \label{fig:my_label}
+   
 \end{figure}
 
 Notice that in the right window, that i have chosen std.In(128 Bytes.input) DWORD 6. This correlate to where we put the data when we were doing the linking in the PLC.
@@ -389,7 +389,7 @@ Now we can connect the input to the bits
     \centering
     \includegraphics[scale=0.6]{"pictures/Config work visual/WV(10)".png}
     \caption{By clicking the connect button. Fortunately, I have marked this button with a big red arrow}
-    \label{fig:my_label}
+   
 \end{figure}
 
 
@@ -398,7 +398,7 @@ Now we can connect the input to the bits
     \centering
     \includegraphics[scale=0.6]{"pictures/Config work visual/WV(11)".png}
     \caption{Click Yes}
-    \label{fig:my_label}
+   
 \end{figure}
 
 \newpage
@@ -408,7 +408,7 @@ We should now have made this connection
     \centering
     \includegraphics[scale=0.6]{"pictures/Config work visual/WV(12)".png}
     \caption{Again we have a big red arrow that show us the change. Take a note of the number to the left, this will be useful later}
-    \label{fig:my_label}
+    
 \end{figure}
 
 \newpage
@@ -423,7 +423,7 @@ Instead of choosing digital input in the upper left pane, we are now going to ch
     \centering
     \includegraphics[scale=0.7]{"pictures/Config work visual/WV(13)".png}
     \caption{Select the digital output in the left pane, but stay on the EL6695-1001 fieldbus }
-    \label{fig:my_label}
+   
 \end{figure}
 
 \newpage
@@ -434,7 +434,7 @@ The process is going to be the same as last time. In the bottom pane, available 
     \centering
     \includegraphics[scale=0.7]{"pictures/Config work visual/WV(14)".png}
     \caption{Notice that i made an error, i linked it to output 1 instead. You should use the same as the data you linked in the PLC-program.  }
-    \label{fig:my_label}
+   
 \end{figure}
 
 Select 32 available outputs and link them to output 0, as we chose in the PLC-program.
@@ -447,7 +447,7 @@ Push yes on the popup, and it should look something like this.
     \centering
     \includegraphics[scale=0.7]{"pictures/Config work visual/WV(15)".png}
     \caption{Success! Note: The error i made is still there}
-    \label{fig:my_label}
+   
 \end{figure}
 
 \newpage
@@ -455,14 +455,12 @@ Push yes on the popup, and it should look something like this.
 \subsection{Give the output and input usable names}
 Since we are nice people, we would like to give the input and output names that we can remember. It can be hard to remember the data value we receive from the PLC is linked to input $n\:to\:n+31$. 
 
-\newline
-\newline
 
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.6]{"pictures/Config work visual/WV(16)".png}
     \caption{In the bottom left of the screen, click the programming and diagnosis button}
-    \label{fig:my_label}
+    
 \end{figure}
 
 \newpage
@@ -473,7 +471,7 @@ This gives you a new window. This window allows you to navigate the files and fo
     \centering
     \includegraphics[scale=0.5]{"pictures/Config work visual/WV(17)".png}
     \caption{Right click the cookie monster and choose establish controller state to connect to the controller}
-    \label{fig:my_label}
+   
 \end{figure}
 
 \newpage
@@ -484,7 +482,7 @@ Expand R1 and then system, double click config.dat and the center pane will give
     \centering
     \includegraphics[scale=0.5]{"pictures/Config work visual/WV(18)".png}
     \caption{Double click config.dat and scroll to the bottom}
-    \label{fig:my_label}
+    
 \end{figure}
 
 Near the bottom you will find User defined externals. This is where we are going to give our input and output a name. And of course some nice comments, so it is easy to understand why they are there. 
@@ -495,7 +493,7 @@ Near the bottom you will find User defined externals. This is where we are going
     \centering
     \includegraphics[scale=0.6]{"pictures/Config work visual/WV(19)".png}
     \caption{I have chosen to use the same variable name as i did on the PLC, but it is not something you must do}
-    \label{fig:my_label}
+    
 \end{figure}
 
 Congratulations, you have earned a black belt in data transmission between a Beckhoff PLC and Kuka robot controller 4.  
