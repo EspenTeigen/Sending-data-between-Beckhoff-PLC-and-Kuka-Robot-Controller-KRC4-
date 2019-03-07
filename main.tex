@@ -366,7 +366,7 @@ One import thing to know and remember her, is that the controller treats every i
 
 \newpage
 
-The data we are receiving are UDINT(Unsigned double integrer), and as everyone knows, this is 32 bits. That means that we have to select 32 of the inputs on the bottom left pane to have the space for det data we are receiveing from the PLC. 
+The data we are receiving are UDINT(Unsigned double integer), and as everyone knows, this is 32 bits. That means that we have to select 32 of the inputs on the bottom left pane to have the space for thr data we are receiving from the PLC. 
 
 \begin{figure}[!h]
     \centering
@@ -417,7 +417,7 @@ Instead of choosing digital input in the upper left pane, we are now going to ch
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.7]{"pictures/Config work visual/WV(13)".png}
-    \caption{Select the digtial output in the left pane, but stay on the EL6695-1001 fieldbus }
+    \caption{Select the digital output in the left pane, but stay on the EL6695-1001 fieldbus }
     \label{fig:my_label}
 \end{figure}
 
@@ -448,8 +448,51 @@ Push yes on the popup, and it should look something like this.
 \newpage
 
 \section{Give the output and input usable names}
-Since we are nice people, we would like to give the input and output names that we can remember. It can be hard to remember the data value we receive from the PLC is linked to input $n\:to\:n+32$. 
-////
-In the bottom right we have two buttons. 
+Since we are nice people, we would like to give the input and output names that we can remember. It can be hard to remember the data value we receive from the PLC is linked to input $n\:to\:n+31$. 
+
+\newline
+\newline
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.6]{"pictures/Config work visual/WV(16)".png}
+    \caption{In the bottom left of the screen, click the programming and diagnosis button}
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+
+This gives you a new window. This window allows you to navigate the files and folders on the controller. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Config work visual/WV(17)".png}
+    \caption{Right click the cookie monster and choose establish controller state to connect to the controller}
+    \label{fig:my_label}
+\end{figure}
+
+\newpage
+
+Expand R1 and then system, double click config.dat and the center pane will give you a window with som code.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.5]{"pictures/Config work visual/WV(18)".png}
+    \caption{Double click config.dat and scroll to the bottom}
+    \label{fig:my_label}
+\end{figure}
+
+Near the bottom you will find User defined externals. This is where we are going to give our input and output a name. And of course some nice comments, so it is easy to understand why they are there. 
+
+\newpage
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.6]{"pictures/Config work visual/WV(19)".png}
+    \caption{I have chosen to use the same variable name as i did on the PLC, but it is not something you must do}
+    \label{fig:my_label}
+\end{figure}
+
+Congratulations, you have earned a black belt in data transmission between a Beckhoff PLC and Kuka robot controller 4.  
 
 \end{document}
